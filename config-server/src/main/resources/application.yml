@@ -1,0 +1,19 @@
+server:
+  port: ${CONFIG_PORT:8081}
+
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+            - ${CONFIG_LOCATION:classpath:/configs}
+  security:
+    user:
+      name: ${CONFIG_USER:root}
+      password: ${CONFIG_PASSWORD:toor}
+      role: ${CONFIG_ROLE:SYSTEM}

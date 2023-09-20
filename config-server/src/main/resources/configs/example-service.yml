@@ -1,0 +1,30 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /api/example
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:toor}
+    url: jdbc:${DB_TYPE:mysql}://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:database_name}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: false
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: true
+
+eureka:
+  client:
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://${DISCOVERY_USER:user}:${DISCOVERY_PASSWORD:qwerty}@${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:9000}/eureka/

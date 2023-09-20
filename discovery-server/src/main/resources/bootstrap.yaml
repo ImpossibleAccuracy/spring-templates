@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: discovery-server-clustered
+  profiles:
+    active: ${PROFILE:default}
+  cloud:
+    config:
+      uri: ${CONFIG_URL:http://localhost:8081}
+      username: ${CONFIG_USERNAME:root}
+      password: ${CONFIG_PASSWORD:toor}
+      fail-fast: true
+      retry:
+        max-attempts: 10
+        max-interval: 1000

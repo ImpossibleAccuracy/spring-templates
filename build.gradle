@@ -1,57 +1,33 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 plugins {
-    alias libs.plugins.spring
-    alias libs.plugins.dependency.management
+    alias libs.plugins.spring apply false
+    alias libs.plugins.dependency.management apply false
 
-    alias libs.plugins.kotlin.jvm
-    alias libs.plugins.kotlin.allopen
-    alias libs.plugins.kotlin.spring
-    alias libs.plugins.kotlin.jpa
+    alias libs.plugins.kotlin.jvm apply false
+    alias libs.plugins.kotlin.spring apply false
 }
 
-allOpen {
-    annotation("jakarta.persistence.Entity")
-    annotation("jakarta.persistence.Embeddable")
-    annotation("jakarta.persistence.MappedSuperclass")
-    annotation("jakarta.persistence.Embeddable")
+subprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    sourceCompatibility = '18'
+tasks.register('clean', Delete) {
+    delete rootProject.buildDir
 }
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    google()
-}
-
-dependencies {
-    // PLATOFRM DEPENDENCIES
-    implementation libs.kotlin.reflect
-    implementation libs.kotlin.stdlib
-
-    // SPRING DEPENDENCIES
-    implementation libs.spring.web
-    implementation libs.spring.data.jpa
-    implementation libs.spring.actuator
-    developmentOnly libs.spring.devtools
-
-    // DATABASE DEPENDENCIES
-    runtimeOnly libs.mysql.connector
-
-    // OTHER DEPENDENCIES
-    implementation libs.jackson.kotlin
-
-    // TEST DEPENDENCIES
-    testImplementation libs.spring.test
-}
-
-tasks.withType(KotlinCompile) {
+tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         freeCompilerArgs += '-Xjsr305=strict'
         jvmTarget = '18'

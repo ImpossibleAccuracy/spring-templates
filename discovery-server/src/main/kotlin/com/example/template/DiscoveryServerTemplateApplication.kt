@@ -2,10 +2,12 @@ package com.example.template
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer
 
 @SpringBootApplication
-class TemplateApplication
+@EnableEurekaServer
+class DiscoveryServerTemplateApplication
 
 fun main(args: Array<String>) {
-    runApplication<TemplateApplication>(*args)
+    runApplication<DiscoveryServerTemplateApplication>(*args)
 }

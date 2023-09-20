@@ -15,6 +15,7 @@ allOpen {
     annotation("jakarta.persistence.Embeddable")
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
+    annotation("com.example.template.utils.DTO")
 }
 
 group = 'com.example'
@@ -46,6 +47,7 @@ dependencies {
 
     // OTHER DEPENDENCIES
     implementation libs.jackson.kotlin
+    implementation libs.model.mapper
 
     // TEST DEPENDENCIES
     testImplementation libs.spring.test

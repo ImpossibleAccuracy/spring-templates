@@ -31,15 +31,16 @@ repositories {
 }
 
 dependencies {
-    // PLATOFRM DEPENDENCIES
+    // PLATFORM DEPENDENCIES
     implementation libs.kotlin.reflect
     implementation libs.kotlin.stdlib
 
     // SPRING DEPENDENCIES
-    implementation libs.spring.web
-    implementation libs.spring.data.jpa
-    implementation libs.spring.actuator
+    implementation libs.bundles.spring.web
     developmentOnly libs.spring.devtools
+
+    // SPRING CLOUD DEPENDENCIES
+    implementation libs.bundles.spring.cloud.client
 
     // DATABASE DEPENDENCIES
     runtimeOnly libs.mysql.connector
